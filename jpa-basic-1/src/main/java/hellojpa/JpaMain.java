@@ -16,6 +16,7 @@ public class JpaMain {
         
         // Tranaction 이 중요함
         EntityTransaction tx = em.getTransaction();
+        
         tx.begin();
 
         try{
