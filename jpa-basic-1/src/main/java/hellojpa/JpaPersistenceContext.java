@@ -1,5 +1,10 @@
 package hellojpa;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
 public class JpaPersistenceContext {
 
     /*
@@ -44,6 +49,73 @@ public class JpaPersistenceContext {
      */
 
     public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         
+        tx.begin();
+
+        try{
+            /*
+            Member member = new Member();
+            member.setId(101L);
+            member.setName("Hello Persistence Context");
+
+            em.persist(member);
+            */
+
+            //Member findMember1 = em.find(Member.class, 101L);
+            //Member findMember2 = em.find(Member.class, 101L);
+
+            //System.out.println("Member: "+findMember1.getName());
+
+            // 엔티티의 동일성 보장
+            //entityIdentityCompare(em, tx);
+
+            // 트랜잭션을 지원하는 쓰기 지연 transactional write-behind
+            //transactionalWriteBehind(em, tx);
+
+            // 변경 감지(Dirty Checking)
+            dirtyChecking(em, tx);
+        }catch(Exception e){
+            e.printStackTrace();
+            tx.rollback();
+        }finally{
+            em.close();
+            emf.close();
+        }
+    }
+
+    // 엔티티의 동일성 보장
+    static void entityIdentityCompare(EntityManager em, EntityTransaction tx){
+
+        Member findMember1 = em.find(Member.class, 101L);
+        Member findMember2 = em.find(Member.class, 101L);
+
+        System.out.println("result = "+(findMember1 == findMember2));
+
+        tx.commit();
+    }
+
+    // 트랜잭션을 지원하는 쓰기 지연 transactional write-behind
+    static void transactionalWriteBehind(EntityManager em, EntityTransaction tx){
+        Member member1 = new Member(160L, "A");
+        Member member2 = new Member(170L, "A");
+
+        em.persist(member1);
+        em.persist(member2);
+
+        System.out.println("================================");
+
+        tx.commit();
+    }
+
+    // 변경 감지(Dirty Checking)
+    static void dirtyChecking(EntityManager em, EntityTransaction tx){
+        Member findMember = em.find(Member.class, 160L);
+        findMember.setName("ZZZZ");
+
+        System.out.println("=====================");
+        tx.commit();
     }
 }
