@@ -1,5 +1,5 @@
 ### 👋🏻 Hi, there. This repository is for recording purposes. About JPA!
 
 ##### 📁JPA Persistence Context 영속성 컨텍스트<br>
-[![Velog's GitHub stats](https://velog-readme-stats.vercel.app/api/badge?name=Spring4)](https://velog.io/@jnissi92/JPAPersistenceContext)
+[![Velog's GitHub stats](https://velog-readme-stats.vercel.app/api/badge?name=JPA)](https://velog.io/@jnissi92/JPAPersistenceContext)
 
