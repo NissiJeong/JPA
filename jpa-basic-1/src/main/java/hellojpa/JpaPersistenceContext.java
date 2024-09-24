@@ -5,6 +5,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import entityMapping.Member;
+
 public class JpaPersistenceContext {
 
     /*
@@ -99,8 +101,8 @@ public class JpaPersistenceContext {
 
     // 트랜잭션을 지원하는 쓰기 지연 transactional write-behind
     static void transactionalWriteBehind(EntityManager em, EntityTransaction tx){
-        Member member1 = new Member(160L, "A");
-        Member member2 = new Member(170L, "A");
+        Member2 member1 = new Member2(160L, "A");
+        Member2 member2 = new Member2(170L, "A");
 
         em.persist(member1);
         em.persist(member2);
@@ -112,7 +114,7 @@ public class JpaPersistenceContext {
 
     // 변경 감지(Dirty Checking)
     static void dirtyChecking(EntityManager em, EntityTransaction tx){
-        Member findMember = em.find(Member.class, 160L);
+        Member2 findMember = em.find(Member2.class, 160L);
         findMember.setName("ZZZZ");
 
         System.out.println("=====================");

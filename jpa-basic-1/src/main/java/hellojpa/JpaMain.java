@@ -35,7 +35,7 @@ public class JpaMain {
              */
 
             //조회
-            Member findMember = em.find(Member.class, 1L);
+            Member2 findMember = em.find(Member2.class, 1L);
             System.out.println("findMember: "+findMember.getId());
     
             //삭제
@@ -57,7 +57,7 @@ public class JpaMain {
             //     member0_.name as name2_0_ 
             // from
             //     Member member0_
-            List<Member> result = em.createQuery("select m from Member as m", Member.class).getResultList();
+            List<Member2> result = em.createQuery("select m from Member2 as m", Member2.class).getResultList();
             //jpql은 어떤 메리트가 있나?
             //페이징을 하거나 setFirstResult, setMaxResult 등으로 하면 자동을 반영 됨. 
             //jpql은 객체를 대상으로 하는 객체지향 쿼리, 내가 선택한 database에 맞춰서 알아서 변경을 해 줌.
@@ -69,7 +69,7 @@ public class JpaMain {
              * JPQL을 한마디로 정의하면 객체지향 SQL
              */
 
-            for(Member member : result ){
+            for(Member2 member : result ){
                 System.out.println("member: "+member.getName());
             }
 

@@ -4,17 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Member {
+public class Member2 {
 
     @Id
     private Long id;
     private String name;
 
-    public Member(){
+    public Member2(){
         
     }
 
-    public Member(Long id, String name){
+    public Member2(Long id, String name){
         this.id = id;
         this.name = name;
     }    
