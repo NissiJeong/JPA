@@ -9,7 +9,10 @@ import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import hellojpa.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import hellojpa.RoleType;
 
 @Entity
@@ -24,7 +27,13 @@ public class Member {
     private Integer age;
 
     @Enumerated(EnumType.STRING)//java 에서 enum을 쓰고싶으면 해당 어노테이션 사용하면 됨
+    //EnumType 의 default 타입인 ORDINAL 를 사용하면 db에 enum의 순서가 들어가게 되어있음. 그럼 enum의 순서가 바뀌거나 추가되면 큰 오류가 발생할 수 있음.
+    //String 으로 하면 enum 문자열 그대로 입력된다.
     private RoleType  roleType;
+
+    //시간은 이렇게 사용하면 됨.
+    //private LocalDate localDate; //날짜까지
+    //private LocalDateTime localDateTime; //날짜시간까지
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;

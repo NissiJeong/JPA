@@ -15,7 +15,8 @@ public class EntityMapping1 {
         tx.begin();
 
         try{
-            
+            Member member = new Member();
+            tx.commit();
         }catch(Exception e){
             tx.rollback();
             e.printStackTrace();
