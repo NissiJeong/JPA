@@ -16,6 +16,10 @@ public class EntityMapping1 {
 
         try{
             Member member = new Member();
+            member.setUserName("aaa");
+
+            em.persist(member);
+            
             tx.commit();
         }catch(Exception e){
             tx.rollback();
