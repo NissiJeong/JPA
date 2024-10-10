@@ -18,7 +18,10 @@ public class EntityMapping1 {
             Member member = new Member();
             member.setUserName("aaa");
 
+            System.out.println("=================");
             em.persist(member);
+            System.out.println("memeber.id = "+member.getId()); //jdbc 내부적으로 db에 insert 후에 해당 값을 바인딩 해주게 되어 있음.
+            System.out.println("=================");
             
             tx.commit();
         }catch(Exception e){
