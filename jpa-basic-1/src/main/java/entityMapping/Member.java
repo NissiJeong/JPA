@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -18,11 +19,17 @@ import java.util.Date;
 import hellojpa.RoleType;
 
 @Entity
+@SequenceGenerator(
+    name = "MEMBER_SEQ_GENERATOR", 
+    sequenceName = "MEMBER_SEQ",//매핑할 데이터베이스 시퀀스 이름
+    initialValue = 1,
+    allocationSize = 50)
 public class Member {
 
     @Id//pk 매핑
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY이면 db에 맞김, 
+    //@GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY이면 db에 맞김, 
     //@GeneratedValue(strategy = GenerationType.AUTO) // Auto이면 db방언에 맞게 자동 설정
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
     private Long id;
 
     @Column(name = "name")//db 컬럼 name, 객체명 username
