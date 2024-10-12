@@ -41,8 +41,10 @@ public class Member {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void changeTeam(Team team) {
         this.team = team;
+        // 연관관계 편의 메소드를 이런 식으로 생성할 수 있다.
+        team.getMembers().add(this);
     }
 
     /*

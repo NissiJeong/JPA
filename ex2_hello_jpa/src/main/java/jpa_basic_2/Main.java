@@ -23,7 +23,7 @@ public class Main {
 
             Member member = new Member();
             member.setUsername("Member2");
-            member.setTeam(team);
+            member.changeTeam(team);
             em.persist(member);
 
             //영속성 컨텍스트 1차 캐시 말고 직접 db 쿼리를 보고 싶으면
