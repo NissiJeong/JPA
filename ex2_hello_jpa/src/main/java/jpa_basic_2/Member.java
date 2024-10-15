@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Member {
@@ -20,6 +21,11 @@ public class Member {
     @ManyToOne //멤버 입장에서는 멤버가 n, 팀이 1 //(fetch = FetchType.LAZY) FetchType.LAZY로 설정하면 Member와 Team select 쿼리가 분리돼서 실행된다. 
     @JoinColumn(name = "TEAM_ID")//조인 컬럼 설정
     private Team team;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    // Member와 Locker 와 1:1 관계.
+    private Locker locker;
 
     public Long getId() {
         return id;
