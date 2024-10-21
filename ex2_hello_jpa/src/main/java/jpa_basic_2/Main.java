@@ -1,5 +1,6 @@
 package jpa_basic_2;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,15 @@ public class Main {
         tx.begin();
 
         try{
+
+            Member member = new Member();
+            member.setUsername("A");
+            member.setCreatedBy("kim");
+            member.setCreatedDate(LocalDateTime.now());
+
+            em.persist(member);
             //저장
+            /*
             Team team = new Team();
             team.setName("TeamB");
             em.persist(team);
@@ -37,6 +46,7 @@ public class Main {
             for(Member m : members){
                 System.out.println("m = " + m.getUsername());
             }
+             */
 
             //Team findTeam = findMember.getTeam();
             //System.out.println("findTeam: "+findTeam.getName());

@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import java.util.*;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MEMBER_ID")

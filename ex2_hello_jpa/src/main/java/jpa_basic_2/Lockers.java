@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Locker {
+public class Lockers {
 
     @Id @GeneratedValue
     private Long id;

@@ -1,5 +1,7 @@
 package jpa_basic_2;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -25,7 +27,7 @@ public class Member {
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     // Member와 Locker 와 1:1 관계.
-    private Locker locker;
+    private Lockers locker; 
 
     public Long getId() {
         return id;

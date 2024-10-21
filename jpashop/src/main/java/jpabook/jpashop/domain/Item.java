@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
+public abstract /* 아이템만 따로 저장할 일이 없다고 가정할때, 추상 클래스로 생성 */ class Item extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")

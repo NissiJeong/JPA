@@ -1,15 +1,11 @@
-package jpabook.jpashop;
+package jpa_basic_2;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import jpabook.jpashop.domain.Book;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
-
-public class JpaMain {
+public class ItemMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
@@ -17,19 +13,27 @@ public class JpaMain {
 
         tx.begin();
 
-        try{
-            
-            Book book = new Book();
-            book.setName("JPA");
-            book.setAuthor("김영한");
+        try {
 
-            em.persist(book);
-            
+            Movie movie = new Movie();
+            movie.setDirector("A");
+            movie.setActor("B");
+            movie.setName("바람과함께 사라지다");
+            movie.setPrice(10000);
+
+            em.persist(movie);
+
+            em.flush();
+            em.clear();
+
+            Item Item = em.find(Item.class, movie.getId());
+            System.out.println("find Item : "+Item.getName());
+
             tx.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             tx.rollback();
             e.printStackTrace();
-        }finally{
+        } finally {
             em.close();
         }
 
