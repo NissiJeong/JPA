@@ -64,14 +64,23 @@ public class ProxyMain {
             em.flush();
             em.clear();
 
+            /* 
             Member refMember = em.getReference(Member.class, member1.getId());
             System.out.println("refMember = " + refMember.getClass());
 
+            // 아래 세개로 인해 refMember는 영속성 컨텍스트의 도움을 받을 수 없음.
             em.detach(refMember);
+            //em.clear();
             //em.close();
             
             // 영속성 컨텍스트의 도움을 받을 수 없는 준영속 상태일 때, 프록시를 초기화 시키면 문제 발생(하이버네이트는 org.hibernate.LazyInitializationExeption 예외를 발생시킴)
             System.out.println("refMember.getUsername: "+refMember.getUsername());
+            */
+
+            Member refMember = em.getReference(Member.class, member1.getId());
+            System.out.println("refMember : "+refMember.getClass());
+            refMember.getUsername();
+            System.out.println("isLoaded: "+emf.getPersistenceUnitUtil().isLoaded(refMember));
 
             tx.commit();
         } catch(Exception e){
