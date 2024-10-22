@@ -14,7 +14,7 @@ public class Main {
         tx.begin();
 
         try{            
-            Member member = new Member();
+            Member2 member = new Member2();
             member.setUsername("member1");
 
             em.persist(member);
