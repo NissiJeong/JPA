@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,8 +21,10 @@ public class Member extends BaseEntity {
     @Column(name = "USERNAME")
     private String username;
 
-    @ManyToOne //멤버 입장에서는 멤버가 n, 팀이 1 //(fetch = FetchType.LAZY) FetchType.LAZY로 설정하면 Member와 Team select 쿼리가 분리돼서 실행된다. 
-    @JoinColumn(name = "TEAM_ID")//조인 컬럼 설정
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "TEAM_ID")
+    //@ManyToOne //멤버 입장에서는 멤버가 n, 팀이 1 //(fetch = FetchType.LAZY) FetchType.LAZY로 설정하면 Member와 Team select 쿼리가 분리돼서 실행된다. 
+    //@JoinColumn(name = "TEAM_ID")//조인 컬럼 설정
     private Team team;
 
     @OneToOne
